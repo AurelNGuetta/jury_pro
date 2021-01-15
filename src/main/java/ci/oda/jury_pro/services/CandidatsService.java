@@ -1,0 +1,62 @@
+package ci.oda.jury_pro.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.web.bind.annotation.RestController;
+
+import ci.oda.jury_pro.entities.Candidat;
+import ci.oda.jury_pro.repositories.CandidatsRepository;
+
+@RestController
+public class CandidatsService {
+
+    @Autowired
+    CandidatsRepository candidatsRepository;
+
+    public List<Candidat> getAll() {
+        return candidatsRepository.findAll();
+    }
+
+    public Candidat getEvenementById(int id) {
+        return candidatsRepository.getOne(id);
+    }
+
+    public boolean createOrUpdateEvenement(Candidat candidat) {
+        boolean result = false;
+        try {
+            if (candidat.getId() > 0) {
+                Candidat item = candidatsRepository.getOne(candidat.getId());
+                result = true;
+                if (item == null) {
+                    throw new Exception();
+                }
+            }
+            candidatsRepository.save(candidat);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return result;
+
+    }
+
+    public boolean deleteEvenement(Candidat candidat) {
+        boolean result = false;
+        try {
+            if (candidat.getId() < 0) {
+                throw new Exception();
+            }
+            Candidat item = ((JpaRepository<Candidat, Integer>) candidatsRepository).getOne(candidat.getId());
+            if (item == null) {
+                throw new Exception();
+            }
+            candidatsRepository.delete(candidat);
+            result = true;
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return result;
+    }
+
+}
