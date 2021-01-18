@@ -19,11 +19,11 @@ public class CandidatsService {
         return candidatsRepository.findAll();
     }
 
-    public Candidat getEvenementById(int id) {
+    public Candidat getCandidatById(int id) {
         return candidatsRepository.getOne(id);
     }
 
-    public boolean createOrUpdateEvenement(Candidat candidat) {
+    public boolean createOrUpdateCanddat(Candidat candidat) {
         boolean result = false;
         try {
             if (candidat.getId() > 0) {
@@ -41,7 +41,7 @@ public class CandidatsService {
 
     }
 
-    public boolean deleteEvenement(Candidat candidat) {
+    public boolean deleteCandidat(Candidat candidat) {
         boolean result = false;
         try {
             if (candidat.getId() < 0) {
