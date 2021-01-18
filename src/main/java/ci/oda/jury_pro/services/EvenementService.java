@@ -1,8 +1,11 @@
 package ci.oda.jury_pro.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import ci.oda.jury_pro.entities.Evenement;
@@ -15,19 +18,31 @@ public class EvenementService {
     EvenementRepository evenementRepository;
 
     public List<Evenement> getAll() {
-        return evenementRepository.findAll();
+        List<Evenement> evenements = null;
+        try {
+            evenements = evenementRepository.findAll();
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return evenements;
     }
 
-    public Evenement getEvenementById(int id) {
-        return evenementRepository.getOne(id);
+    public Evenement getEvenementById(Integer id) {
+        Evenement evenement = null;
+        try {
+            evenement = evenementRepository.findById(id).orElse(null);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return evenement;
     }
 
-    public boolean createOrUpdateEvenement(Evenement evenement) {
-        boolean result = false;
+    public ResponseEntity<?> createOrUpdateEvenement(Evenement evenement) {
+        // boolean result = false;
+        ResponseEntity<?> result = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         try {
             if (evenement.getEvenement_id() > 0) {
-                Evenement item = evenementRepository.getOne(evenement.getEvenement_id());
-                result = true;
+                Optional<Evenement> item = evenementRepository.findById(evenement.getEvenement_id());
                 if (item == null) {
                     throw new Exception();
                 }
@@ -36,6 +51,7 @@ public class EvenementService {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+        result = new ResponseEntity<>(HttpStatus.OK);
         return result;
 
     }
@@ -46,7 +62,7 @@ public class EvenementService {
             if (evenement.getEvenement_id() < 0) {
                 throw new Exception();
             }
-            Evenement item = evenementRepository.getOne(evenement.getEvenement_id());
+            Evenement item = evenementRepository.findById(evenement.getEvenement_id()).orElse(null);
             if (item == null) {
                 throw new Exception();
             }

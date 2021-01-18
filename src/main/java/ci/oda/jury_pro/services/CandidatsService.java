@@ -20,14 +20,14 @@ public class CandidatsService {
     }
 
     public Candidat getCandidatById(int id) {
-        return candidatsRepository.getOne(id);
+        return candidatsRepository.findById(id).orElse(null);
     }
 
     public boolean createOrUpdateCanddat(Candidat candidat) {
         boolean result = false;
         try {
             if (candidat.getId() > 0) {
-                Candidat item = candidatsRepository.getOne(candidat.getId());
+                Candidat item = candidatsRepository.findById(candidat.getId()).orElse(null);
                 result = true;
                 if (item == null) {
                     throw new Exception();
@@ -47,7 +47,7 @@ public class CandidatsService {
             if (candidat.getId() < 0) {
                 throw new Exception();
             }
-            Candidat item = ((JpaRepository<Candidat, Integer>) candidatsRepository).getOne(candidat.getId());
+            Candidat item = ((JpaRepository<Candidat, Integer>) candidatsRepository).findById(candidat.getId()).orElse(null);
             if (item == null) {
                 throw new Exception();
             }
