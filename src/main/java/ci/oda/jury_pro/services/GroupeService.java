@@ -23,7 +23,7 @@ public class GroupeService {
         return groupeRepository.getOne(id);
     }
 
-    public boolean createOrUpdate(Groupe groupe) {
+    public boolean createOrUpdateGroupe(Groupe groupe) {
         boolean result = false;
         try {
             if (groupe.getGroupe_id() > 0) {
@@ -41,7 +41,7 @@ public class GroupeService {
 
     }
 
-    public boolean deleteEvenement(Groupe groupe) {
+    public boolean deleteGroupe(Groupe groupe) {
         boolean result = false;
         try {
             if (groupe.getGroupe_id() < 0) {

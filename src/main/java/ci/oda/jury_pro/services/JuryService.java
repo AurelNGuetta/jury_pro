@@ -18,11 +18,11 @@ public class JuryService {
         return juryRepository.findAll();
     }
 
-    public Jury getGroupeById(int id) {
+    public Jury getJuryById(int id) {
         return juryRepository.getOne(id);
     }
 
-    public boolean createOrUpdate(Jury Jury) {
+    public boolean createOrUpdateJury(Jury Jury) {
         boolean result = false;
         try {
             if (Jury.getJury_id() > 0) {
@@ -40,7 +40,7 @@ public class JuryService {
 
     }
 
-    public boolean deleteEvenement(Jury Jury) {
+    public boolean deleteJury(Jury Jury) {
         boolean result = false;
         try {
             if (Jury.getJury_id() < 0) {
