@@ -35,7 +35,7 @@ public class JuryController extends JuryService {
     }
 
     @PostMapping("/juries/delete")
-    public boolean deleteJury(Jury jury) {
+    public boolean deleteJury(@RequestBody Jury jury) {
         // candidat.setId(1);
         return juryService.deleteJury(jury);
 

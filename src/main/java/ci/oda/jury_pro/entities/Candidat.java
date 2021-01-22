@@ -16,6 +16,7 @@ public class Candidat {
     private String candidat_email;
     private Byte[] candidat_photo;
     private int candidat_telephone;
+    @Column(name = "evenement_id")
     private int candidat_evenement;
 
     public Candidat() {

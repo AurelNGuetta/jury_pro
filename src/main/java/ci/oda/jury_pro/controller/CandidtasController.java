@@ -36,7 +36,7 @@ public class CandidtasController extends CandidatsService {
     }
 
     @PostMapping("/candidats/delete")
-    public boolean deleteCandidat(Candidat candidat) {
+    public boolean deleteCandidat(@RequestBody Candidat candidat) {
         // candidat.setId(1);
         return candidatsService.deleteCandidat(candidat);
 

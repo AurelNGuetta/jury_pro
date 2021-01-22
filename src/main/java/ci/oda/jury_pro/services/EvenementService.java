@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import ci.oda.jury_pro.entities.Evenement;
+import ci.oda.jury_pro.entities.IEvenementDTO;
 import ci.oda.jury_pro.repositories.EvenementRepository;
 
 @Service
@@ -17,13 +18,14 @@ public class EvenementService {
     @Autowired
     EvenementRepository evenementRepository;
 
-    public List<Evenement> getAll() {
-        List<Evenement> evenements = null;
+    public List<IEvenementDTO> getAll() {
+        List<IEvenementDTO> evenements = null;
         try {
-            evenements = evenementRepository.findAll();
+            evenements = evenementRepository.findAllEvenements();
         } catch (Exception e) {
             // TODO: handle exception
         }
+        System.out.println(evenements);
         return evenements;
     }
 
@@ -66,8 +68,8 @@ public class EvenementService {
             if (item == null) {
                 throw new Exception();
             }
-            // evenementRepository.delete(evenement);
-            evenementRepository.deleteById(1);
+            evenementRepository.delete(evenement);
+            // evenementRepository.deleteById(2);
             result = true;
         } catch (Exception e) {
             System.err.println(e.getMessage());
