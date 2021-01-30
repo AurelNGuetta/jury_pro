@@ -1,11 +1,8 @@
 package ci.oda.jury_pro.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import ci.oda.jury_pro.entities.Evenement;
@@ -23,7 +20,7 @@ public class EvenementService {
         try {
             evenements = evenementRepository.findAllEvenements();
         } catch (Exception e) {
-            // TODO: handle exception
+
         }
         System.out.println(evenements);
         return evenements;
@@ -34,27 +31,41 @@ public class EvenementService {
         try {
             evenement = evenementRepository.findById(id).orElse(null);
         } catch (Exception e) {
-            // TODO: handle exception
+
         }
         return evenement;
     }
 
-    public ResponseEntity<?> createOrUpdateEvenement(Evenement evenement) {
-        // boolean result = false;
-        ResponseEntity<?> result = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    public byte[] getEvenementImage(Integer id) {
+        byte[] image = null;
+        Evenement evenement = null;
+        try {
+            evenement = evenementRepository.findById(id).orElse(null);
+            if (evenement != null) {
+                image = evenementRepository.findEvenementImage(id);
+            }
+        } catch (Exception e) {
+
+        }
+        return image;
+    }
+
+    public Evenement createOrUpdateEvenement(Evenement evenement) {
+        Evenement event = null;
+        // ResponseEntity<?> result = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         try {
             if (evenement.getEvenement_id() > 0) {
-                Optional<Evenement> item = evenementRepository.findById(evenement.getEvenement_id());
+                Evenement item = evenementRepository.findById(evenement.getEvenement_id()).orElse(null);
                 if (item == null) {
-                    throw new Exception();
+                    return event;
                 }
             }
-            evenementRepository.save(evenement);
+            event = evenementRepository.save(evenement);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        result = new ResponseEntity<>(HttpStatus.OK);
-        return result;
+        // result = new ResponseEntity<>(HttpStatus.OK);
+        return event;
 
     }
 

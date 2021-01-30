@@ -19,8 +19,12 @@ public class CandidatsService {
         return candidatsRepository.findAll();
     }
 
-    public Candidat getCandidatById(int id) {
+    public Candidat getCandidatById(Integer id) {
         return candidatsRepository.findById(id).orElse(null);
+    }
+
+    public List<Candidat> findCandidatByEvenement(Integer evenement_id) {
+        return candidatsRepository.findCandidatByEvenement(evenement_id);
     }
 
     public boolean createOrUpdateCanddat(Candidat candidat) {

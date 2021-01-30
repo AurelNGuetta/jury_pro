@@ -16,7 +16,7 @@ public interface IEvenementDTO {
 
     public abstract Date getEvenement_date_fin();
 
-    public abstract Byte[] getEvenement_photo();
+    public abstract byte[] getEvenement_photo();
 
     public abstract Integer getParticipant();
 

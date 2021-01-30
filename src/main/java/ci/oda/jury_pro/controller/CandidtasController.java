@@ -27,6 +27,10 @@ public class CandidtasController extends CandidatsService {
     public Candidat getCandidatById(@PathVariable int id) {
         return candidatsService.getCandidatById(id);
     }
+    @GetMapping("/candidats/event/{id}")
+    public List<Candidat> getCandidatByEvenement(@PathVariable Integer id) {
+        return candidatsService.findCandidatByEvenement(id);
+    }
 
     @PostMapping("/candidats")
     public boolean createOrUpdateCandidat(@RequestBody Candidat candidat) {

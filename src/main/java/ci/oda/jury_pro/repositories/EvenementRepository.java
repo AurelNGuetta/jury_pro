@@ -13,6 +13,9 @@ import ci.oda.jury_pro.entities.IEvenementDTO;
 @CrossOrigin
 public interface EvenementRepository extends JpaRepository<Evenement, Integer> {
 
-    @Query(value = "SELECT EV.*, GP.Nombre as 'participant'  FROM evenements as EV LEFT OUTER JOIN (SELECT * FROM  (SELECT CA.evenement_id, COUNT(*) AS nombre FROM candidats as CA GROUP BY CA.evenement_id) AS G1 UNION SELECT * FROM (SELECT GR.evenement_id , COUNT(*) AS nombre  FROM groupe as GR GROUP BY GR.evenement_id) AS G2) AS GP ON (EV.evenement_id = GP.evenement_id);", nativeQuery = true)
+    @Query(value = "SELECT EV.*, COALESCE(GP.Nombre, 0) as 'participant'  FROM evenements as EV LEFT OUTER JOIN (SELECT * FROM  (SELECT CA.evenement_id, COUNT(*) AS nombre FROM candidats as CA GROUP BY CA.evenement_id) AS G1 UNION SELECT * FROM (SELECT GR.evenement_id , COUNT(*) AS nombre  FROM groupe as GR GROUP BY GR.evenement_id) AS G2) AS GP ON (EV.evenement_id = GP.evenement_id);", nativeQuery = true)
     List<IEvenementDTO> findAllEvenements();
+
+    @Query(value = "SELECT evenement_photo FROM evenements WHERE evenement_id = ?1", nativeQuery = true)
+    byte[] findEvenementImage(Integer evenement_id);
 }

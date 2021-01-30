@@ -3,7 +3,6 @@ package ci.oda.jury_pro.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +31,7 @@ public class EvenementController extends EvenementService {
     }
 
     @PostMapping("/evenements")
-    public ResponseEntity<?> createOrUpdateEvenement(@RequestBody Evenement evenement) {
+    public Evenement createOrUpdateEvenement(@RequestBody Evenement evenement) {
 
         return evenementService.createOrUpdateEvenement(evenement);
 

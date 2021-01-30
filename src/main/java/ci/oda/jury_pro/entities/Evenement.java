@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -20,13 +21,14 @@ public class Evenement {
     private String evenement_description;
     private Date evenement_date_debut;
     private Date evenement_date_fin;
-    private Byte[] evenement_photo;
+    @Lob
+    private byte[] evenement_photo;
 
     public Evenement() {
     }
 
     public Evenement(int evenement_id, String evenement_nom, String evenement_type, String evenement_description,
-            Date evenement_date_debut, Date evenement_date_fin, Byte[] evenement_photo) {
+            Date evenement_date_debut, Date evenement_date_fin, byte[] evenement_photo) {
         this.evenement_id = evenement_id;
         this.evenement_nom = evenement_nom;
         this.evenement_type = evenement_type;
@@ -60,7 +62,7 @@ public class Evenement {
         return this.evenement_date_fin;
     }
 
-    public Byte[] getEvenement_photo() {
+    public byte[] getEvenement_photo() {
         return this.evenement_photo;
     }
 
@@ -84,7 +86,7 @@ public class Evenement {
         this.evenement_date_fin = evenement_date_fin;
     }
 
-    public void setEvenement_photo(Byte[] evenement_photo) {
+    public void setEvenement_photo(byte[] evenement_photo) {
         this.evenement_photo = evenement_photo;
     }
 
