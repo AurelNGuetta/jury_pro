@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -22,7 +23,7 @@ public class JuryController extends JuryService {
     }
 
     @GetMapping("/juries/{id}")
-    public Jury getJuryById(int id) {
+    public Jury getJuryById(@PathVariable int id) {
         return juryService.getJuryById(id);
     }
 
@@ -34,7 +35,7 @@ public class JuryController extends JuryService {
     }
 
     @PostMapping("/juries/delete")
-    public boolean deleteJury(Jury jury) {
+    public boolean deleteJury(@RequestBody Jury jury) {
         // candidat.setId(1);
         return juryService.deleteJury(jury);
 

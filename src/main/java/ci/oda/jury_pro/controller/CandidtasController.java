@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,8 +24,12 @@ public class CandidtasController extends CandidatsService {
     }
 
     @GetMapping("/candidats/{id}")
-    public Candidat getCandidatById(int id) {
+    public Candidat getCandidatById(@PathVariable int id) {
         return candidatsService.getCandidatById(id);
+    }
+    @GetMapping("/candidats/event/{id}")
+    public List<Candidat> getCandidatByEvenement(@PathVariable Integer id) {
+        return candidatsService.findCandidatByEvenement(id);
     }
 
     @PostMapping("/candidats")
@@ -35,7 +40,7 @@ public class CandidtasController extends CandidatsService {
     }
 
     @PostMapping("/candidats/delete")
-    public boolean deleteCandidat(Candidat candidat) {
+    public boolean deleteCandidat(@RequestBody Candidat candidat) {
         // candidat.setId(1);
         return candidatsService.deleteCandidat(candidat);
 

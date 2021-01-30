@@ -14,14 +14,16 @@ public class Candidat {
     private String candidat_nom;
     private String candidat_prenom;
     private String candidat_email;
-    private Byte[] candidat_photo;
+    @Lob
+    private byte[] candidat_photo;
     private int candidat_telephone;
+    @Column(name = "evenement_id")
     private int candidat_evenement;
 
     public Candidat() {
     }
 
-    public Candidat(int id, String candidat_nom, String candidat_prenom, String candidat_email, Byte[] candidat_photo,
+    public Candidat(int id, String candidat_nom, String candidat_prenom, String candidat_email, byte[] candidat_photo,
             int candidat_telephone, int candidat_evenement) {
         this.id = id;
         this.candidat_nom = candidat_nom;
@@ -64,11 +66,11 @@ public class Candidat {
         this.candidat_email = candidat_email;
     }
 
-    public Byte[] getCandidat_photo() {
+    public byte[] getCandidat_photo() {
         return this.candidat_photo;
     }
 
-    public void setCandidat_photo(Byte[] candidat_photo) {
+    public void setCandidat_photo(byte[] candidat_photo) {
         this.candidat_photo = candidat_photo;
     }
 
