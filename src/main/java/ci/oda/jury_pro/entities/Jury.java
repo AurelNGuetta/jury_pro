@@ -14,10 +14,10 @@ public class Jury {
     private int code;
     private String jury_nom_complet;
     private String email;
-    private int jury_telephone;
+    private String jury_telephone;
     private int evenement_id;
 
-    public Jury(int jury_id, int code, String jury_nom_complet, String email, int jury_telephone, int evenement_id) {
+    public Jury(int jury_id, int code, String jury_nom_complet, String email, String jury_telephone, int evenement_id) {
         this.jury_id = jury_id;
         this.code = code;
         this.jury_nom_complet = jury_nom_complet;
@@ -62,11 +62,11 @@ public class Jury {
         this.email = email;
     }
 
-    public int getJury_telephone() {
+    public String getJury_telephone() {
         return this.jury_telephone;
     }
 
-    public void setJury_telephone(int jury_telephone) {
+    public void setJury_telephone(String jury_telephone) {
         this.jury_telephone = jury_telephone;
     }
 

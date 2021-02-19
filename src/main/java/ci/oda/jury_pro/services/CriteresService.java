@@ -3,10 +3,12 @@ package ci.oda.jury_pro.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import ci.oda.jury_pro.entities.Criteres;
 import ci.oda.jury_pro.repositories.CriteresRepository;
 
+@Service
 public class CriteresService {
 
     @Autowired
@@ -18,6 +20,10 @@ public class CriteresService {
 
     public Criteres getCritereById(int id) {
         return criteresRepository.getOne(id);
+    }
+
+    public List<Criteres> getCritereByEvenement(int evenement) {
+        return criteresRepository.getCritereByEvenement(evenement);
     }
 
     public boolean createOrUpdateCritere(Criteres Criteres) {

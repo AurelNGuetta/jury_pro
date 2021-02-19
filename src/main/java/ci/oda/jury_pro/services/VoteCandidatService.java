@@ -3,10 +3,12 @@ package ci.oda.jury_pro.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import ci.oda.jury_pro.entities.Vote_candidats;
 import ci.oda.jury_pro.repositories.VoteCandidatRepository;
 
+@Service
 public class VoteCandidatService {
     @Autowired
     VoteCandidatRepository voteCandidatRepository;

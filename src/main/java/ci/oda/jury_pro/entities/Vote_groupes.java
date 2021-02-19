@@ -13,14 +13,16 @@ public class Vote_groupes {
     private int vote_groupe_id;
     private int jury_id;
     private int evenement_id;
+    private int critere_id;
     private int groupe_id;
     private int note;
     private String commenentaires;
 
-    public Vote_groupes(int vote_groupe_id, int jury_id, int evenement_id, int groupe_id, int note,
+    public Vote_groupes(int vote_groupe_id, int jury_id, int evenement_id, int critere_id, int groupe_id, int note,
             String commenentaires) {
         this.vote_groupe_id = vote_groupe_id;
         this.jury_id = jury_id;
+        this.critere_id = critere_id;
         this.evenement_id = evenement_id;
         this.groupe_id = groupe_id;
         this.note = note;
@@ -44,6 +46,14 @@ public class Vote_groupes {
 
     public void setJury_id(int jury_id) {
         this.jury_id = jury_id;
+    }
+
+    public int getCritere_id() {
+        return this.critere_id;
+    }
+
+    public void setCritere_id(int critere_id) {
+        this.critere_id = critere_id;
     }
 
     public int getEvenement_id() {

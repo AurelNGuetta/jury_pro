@@ -14,7 +14,7 @@ public class Criteres {
     private int critere_id;
 
     private String critere_libelle;
-    private String critere_bareme;
+    private int critere_bareme;
     private int evenement_id;
 
     public int getCritere_id() {
@@ -33,11 +33,11 @@ public class Criteres {
         this.critere_libelle = critere_libelle;
     }
 
-    public String getCritere_bareme() {
+    public int getCritere_bareme() {
         return this.critere_bareme;
     }
 
-    public void setCritere_bareme(String critere_bareme) {
+    public void setCritere_bareme(int critere_bareme) {
         this.critere_bareme = critere_bareme;
     }
 

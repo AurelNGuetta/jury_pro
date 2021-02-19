@@ -3,12 +3,12 @@ package ci.oda.jury_pro.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import ci.oda.jury_pro.entities.Jury;
 import ci.oda.jury_pro.repositories.JuryRepository;
 
-@RestController
+@Service
 public class JuryService {
 
     @Autowired
@@ -20,6 +20,10 @@ public class JuryService {
 
     public Jury getJuryById(int id) {
         return juryRepository.getOne(id);
+    }
+
+    public Jury getJuryByEmailPhone(String data){
+        return juryRepository.findJuryByTag(data);
     }
 
     public boolean createOrUpdateJury(Jury Jury) {
